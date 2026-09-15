@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beyond Marks | Student Development</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 25px 15px;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 35px;
+            padding-left: 15px;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .menu-item {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            padding: 13px 15px;
+            margin-bottom: 5px;
+            text-align: left;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #64748b;
+        }
+
+        .menu-item i {
+            width: 25px;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .search {
+            width: 350px;
+            padding: 12px 18px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .profile {
+            font-weight: bold;
+        }
+
+        .profile small {
+            display: block;
+            color: #64748b;
+            font-weight: normal;
+            margin-top: 3px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        .page-heading,
+        .welcome {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .page-heading h2,
+        .welcome h2 {
+            margin-bottom: 7px;
+        }
+
+        .page-heading p,
+        .welcome p {
+            color: #64748b;
+        }
+
+        .primary-btn {
+            background: #4f46e5;
+            color: white;
+            border: 0;
+            padding: 12px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary-btn:hover {
+            background: #4338ca;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card,
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .stat-card h3 {
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        .stat-card p {
+            color: #64748b;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #edf0f4;
+            text-align: left;
+        }
+
+        th {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .student-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .student-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #e0e7ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .student-name small {
+            display: block;
+            color: #94a3b8;
+            margin-top: 3px;
+        }
+
+        .badge {
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .action-btn {
+            border: 0;
+            border-radius: 7px;
+            padding: 8px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .delete-btn {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .action-btn:hover {
+            opacity: 0.75;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #64748b;
+            padding: 30px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            width: 450px;
+            max-width: 90%;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #dbe1ea;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cancel-btn {
+            border: 1px solid #d1d5db;
+            background: white;
+            padding: 11px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 0;
+            background: transparent;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .info-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 25px;
+        }
+
+        .info-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #64748b;
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: 0.3s;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search {
+                width: 200px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .content {
+                padding: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-heading,
+            .welcome {
+                align-items: flex-start;
+                gap: 15px;
+                flex-direction: column;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .search {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        Beyond<span>Marks</span>
+    </div>
+
+    <button class="menu-item active" onclick="showPage('dashboard')">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+    </button>
+
+    <button class="menu-item" onclick="showPage('students')">
+        <i class="fa-solid fa-users"></i>
+        Students
+    </button>
+
+    <button class="menu-item" onclick="showPage('academics')">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Academics
+    </button>
+
+    <button class="menu-item" onclick="showPage('activities')">
+        <i class="fa-solid fa-calendar-check"></i>
+        Activities
+    </button>
+
+    <button class="menu-item" onclick="showPage('skills')">
+        <i class="fa-solid fa-star"></i>
+        Skills
+    </button>
+
+    <button class="menu-item" onclick="showPage('achievements')">
+        <i class="fa-solid fa-trophy"></i>
+        Achievements
+    </button>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button class="menu-btn" onclick="toggleSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <input
+            type="text"
+            id="studentSearch"
+            class="search"
+            placeholder="Search students..."
+            onkeyup="searchStudent()"
+        >
+
+        <div class="profile">
+            Dr. Rahul
+            <small>Faculty</small>
+        </div>
+
+    </header>
+
+
+    <main class="content">
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="page active-page">
+
+            <div class="welcome">
+
+                <div>
+                    <h2>Good evening, Dr. Rahul 👋</h2>
+
+                    <p>
+                        Here's an overview of your students'
+                        holistic development.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="openModal()">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Student
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <p>Total Students</p>
+                    <h3 id="totalStudents">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Average Attendance</p>
+                    <h3 id="averageAttendance">0%</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Activities</p>
+                    <h3 id="totalActivities">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Achievements</p>
+                    <h3 id="totalAchievements">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Recent Students</h3>
+
+                <br>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Department</th>
+                                <th>Academic</th>
+                                <th>Attendance</th>
+                                <th>Overall</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentStudentTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STUDENTS -->
+
+        <section id="students" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Students</h2>
+
+                    <p>
+                        Manage and monitor student development.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="openModal()">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Add Student
+
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Student Records</h3>
+
+                <p style="color:#64748b;margin:5px 0 20px;">
+                    Students from the database
+                </p>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Student</th>
+                                <th>Department</th>
+                                <th>Academic</th>
+                                <th>Attendance</th>
+                                <th>Activities</th>
+                                <th>Overall</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="studentTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACADEMICS -->
+
+        <section id="academics" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Academics</h2>
+                    <p>Track academic performance.</p>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <h3>Average CGPA</h3>
+                    <p id="averageCgpa">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Average Score</h3>
+                    <p id="averageScore">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Improvement</h3>
+                    <p id="improvement">0%</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITIES -->
+
+        <section id="activities" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Activities</h2>
+                    <p>Track student participation.</p>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <h3>Technical Clubs</h3>
+                    <p id="technicalClubs">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Events</h3>
+                    <p id="eventsCount">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Team Activities</h3>
+                    <p id="teamActivities">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section id="skills" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Skills</h2>
+                    <p>Track student skills.</p>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <h3>Communication</h3>
+                    <p id="communicationScore">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Teamwork</h3>
+                    <p id="teamworkScore">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Leadership</h3>
+                    <p id="leadershipScore">0</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Technical</h3>
+                    <p id="technicalScore">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACHIEVEMENTS -->
+
+        <section id="achievements" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Achievements</h2>
+                    <p>Recognize student accomplishments.</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Student Achievements</h3>
+
+                <br>
+
+                <p style="color:#64748b;">
+                    Achievement records will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ADD / EDIT STUDENT MODAL -->
+
+<div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+        <h2 id="modalTitle">Add Student</h2>
+
+        <form id="studentForm" onsubmit="addStudent(event)">
+
+            <input type="hidden" id="editStudentId">
+
+
+            <div class="form-group">
+
+                <label>Student Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter student name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Student ID</label>
+
+                <input
+                    type="text"
+                    id="studentId"
+                    placeholder="Example: BM2026001"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Department</label>
+
+                <select id="department" required>
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="IT">IT</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Attendance (%)</label>
+
+                <input
+                    type="number"
+                    id="attendance"
+                    min="0"
+                    max="100"
+                    value="0"
+                    required
+                >
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Save Student
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
