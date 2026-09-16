@@ -70,7 +70,29 @@ function closeSidebar() {
    MODAL
 ========================= */
 
+function resetStudentForm() {
+    const form = document.getElementById("studentForm");
+    if (form) form.reset();
+
+    const editId = document.getElementById("editStudentId");
+    if (editId) editId.value = "";
+
+    const studentId = document.getElementById("studentId");
+    if (studentId) studentId.disabled = false;
+
+    document.querySelectorAll("#activityCheckboxes input[type='checkbox']")
+        .forEach(function(box) { box.checked = false; });
+
+    const title = document.getElementById("modalTitle");
+    if (title) title.textContent = "Add Student";
+
+    const saveBtn = document.getElementById("saveStudentBtn");
+    if (saveBtn) saveBtn.textContent = "Add Student";
+}
+
 function openModal() {
+    resetStudentForm();
+
     const modal = document.getElementById("modal");
 
     if (modal) {
@@ -84,6 +106,35 @@ function closeModal() {
     if (modal) {
         modal.classList.remove("show");
     }
+
+    resetStudentForm();
+}
+
+function openEditModal(studentId) {
+    const student = students.find(function(item) {
+        return String(item.student_id) === String(studentId);
+    });
+
+    if (!student) {
+        alert("Could not find that student.");
+        return;
+    }
+
+    resetStudentForm();
+
+    document.getElementById("editStudentId").value = student.student_id;
+
+    document.getElementById("name").value = student.name || "";
+    document.getElementById("studentId").value = student.student_id || "";
+    document.getElementById("studentId").disabled = true;
+    document.getElementById("department").value = student.department || "";
+    document.getElementById("attendance").value = num(student.attendance);
+
+    document.getElementById("modalTitle").textContent = "Edit Student";
+    document.getElementById("saveStudentBtn").textContent = "Update Student";
+
+    const modal = document.getElementById("modal");
+    if (modal) modal.classList.add("show");
 }
 
 /* =========================
@@ -165,7 +216,7 @@ function renderStudentTable() {
                 ? num(student.overall_score).toFixed(0) + "%"
                 : "-";
 
-        row.innerHTML =
+       row.innerHTML =
             "<td>" +
                 "<div class='student-name'>" +
                     "<div class='student-avatar'>" +
@@ -182,7 +233,15 @@ function renderStudentTable() {
             "<td>" + num(student.attendance).toFixed(1) + "%</td>" +
             "<td>-</td>" +
             "<td>" + academic + "</td>" +
-            "<td><span class='badge good'>Active</span></td>";
+            "<td><span class='badge good'>Active</span></td>" +
+            "<td>" +
+                "<button class='action-btn edit-btn' title='Edit' onclick=\"openEditModal('" + esc(student.student_id) + "')\">" +
+                    "<i class='fa-solid fa-pen'></i>" +
+                "</button>" +
+                "<button class='action-btn delete-btn' title='Delete' onclick=\"deleteStudent('" + esc(student.student_id) + "')\">" +
+                    "<i class='fa-solid fa-trash'></i>" +
+                "</button>" +
+            "</td>";
 
         table.appendChild(row);
     });
