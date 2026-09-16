@@ -552,6 +552,7 @@
                             <th>Activities</th>
                             <th>Overall</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
 
                     </thead>
@@ -946,62 +947,118 @@
             <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <h2>Add Student</h2>
+        <h2 id="modalTitle">Add Student</h2>
 
         <p>Create a new student development profile.</p>
 
+        <form id="studentForm" onsubmit="saveStudent(event); return false;">
 
-        <form id="studentForm" onsubmit="addStudent(event); return false;">
+            <input type="hidden" id="editStudentId">
+
+            <h4 class="section-title">Basic Information</h4>
 
             <label>Student Name</label>
-
-            <input
-                type="text"
-                id="name"
-                placeholder="Enter student name"
-                required
-            >
-
+            <input type="text" id="name" placeholder="Enter student name" required>
 
             <label>Student ID</label>
+            <input type="text" id="studentId" placeholder="BM2026001" required>
 
-            <input
-                type="text"
-                id="studentId"
-                placeholder="BM2026001"
-                required
-            >
+            <div class="row-2">
+                <div>
+                    <label>Department</label>
+                    <select id="department">
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="IT">IT</option>
+                        <option value="EEE">EEE</option>
+                        <option value="Mechanical">Mechanical</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Attendance %</label>
+                    <input type="number" id="attendance" min="0" max="100" placeholder="85" required>
+                </div>
+            </div>
 
+            <h4 class="section-title">Academic Performance</h4>
+            <p class="section-hint">Optional &mdash; leave marks/CGPA at 0 to skip.</p>
 
-            <label>Department</label>
+            <div class="row-3">
+                <div>
+                    <label>Semester</label>
+                    <input type="number" id="semester" min="1" max="8" value="1">
+                </div>
+                <div>
+                    <label>Marks (%)</label>
+                    <input type="number" id="marks" min="0" max="100" value="0">
+                </div>
+                <div>
+                    <label>CGPA</label>
+                    <input type="number" id="cgpa" min="0" max="10" step="0.01" value="0">
+                </div>
+            </div>
 
-            <select id="department">
+            <h4 class="section-title">Activities</h4>
+            <p class="section-hint">Mark every activity this student takes part in.</p>
 
-                <option value="CSE">CSE</option>
-                <option value="ECE">ECE</option>
-                <option value="IT">IT</option>
-                <option value="EEE">EEE</option>
-                <option value="Mechanical">Mechanical</option>
+            <div class="checkbox-grid" id="activityCheckboxes">
+                <label class="checkbox-item"><input type="checkbox" value="Technical Club" data-type="technical"> Technical Club</label>
+                <label class="checkbox-item"><input type="checkbox" value="Hackathon" data-type="technical"> Hackathon</label>
+                <label class="checkbox-item"><input type="checkbox" value="Sports Team" data-type="team"> Sports Team</label>
+                <label class="checkbox-item"><input type="checkbox" value="NCC / NSS" data-type="team"> NCC / NSS</label>
+                <label class="checkbox-item"><input type="checkbox" value="Cultural Fest" data-type="event"> Cultural Fest</label>
+                <label class="checkbox-item"><input type="checkbox" value="Workshop / Seminar" data-type="event"> Workshop / Seminar</label>
+                <label class="checkbox-item"><input type="checkbox" value="Volunteering" data-type="event"> Volunteering</label>
+                <label class="checkbox-item"><input type="checkbox" value="Other" data-type="event"> Other</label>
+            </div>
 
-            </select>
+            <h4 class="section-title">Skills (0-100)</h4>
 
+            <div class="row-2">
+                <div>
+                    <label>Communication</label>
+                    <input type="number" id="communication" min="0" max="100" value="0">
+                </div>
+                <div>
+                    <label>Teamwork</label>
+                    <input type="number" id="teamwork" min="0" max="100" value="0">
+                </div>
+            </div>
 
-            <label>Attendance %</label>
+            <div class="row-2">
+                <div>
+                    <label>Leadership</label>
+                    <input type="number" id="leadership" min="0" max="100" value="0">
+                </div>
+                <div>
+                    <label>Technical</label>
+                    <input type="number" id="technical" min="0" max="100" value="0">
+                </div>
+            </div>
 
-            <input
-                type="number"
-                id="attendance"
-                min="0"
-                max="100"
-                placeholder="85"
-                required
-            >
+            <h4 class="section-title">Achievement</h4>
+            <p class="section-hint">Optional &mdash; leave the title blank to skip.</p>
 
+            <label>Title</label>
+            <input type="text" id="achievementTitle" placeholder="Example: Best Project Award">
 
-            <button
-                class="primary-btn full-btn"
-                type="submit"
-            >
+            <div class="row-2">
+                <div>
+                    <label>Level</label>
+                    <select id="achievementLevel">
+                        <option value="College">College</option>
+                        <option value="State">State</option>
+                        <option value="National">National</option>
+                        <option value="International">International</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Year</label>
+                    <input type="number" id="achievementYear" min="2000" max="2100" placeholder="2026">
+                </div>
+            </div>
+
+            <button class="primary-btn full-btn" type="submit" id="saveStudentBtn">
                 Add Student
             </button>
 
@@ -1010,6 +1067,12 @@
     </div>
 
 </div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
 
 
 <script src="script.js"></script>
