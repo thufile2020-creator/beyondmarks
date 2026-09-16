@@ -1450,11 +1450,11 @@ td {
 @media (max-width: 850px) {
     .sidebar {
         position: fixed;
-        top: 0;
+        top: 64px;
         left: 0;
         width: 78%;
         max-width: 330px;
-        height: 100vh;
+        height: calc(100vh - 64px);
         transform: translateX(-100%);
         transition: transform 0.25s ease;
         z-index: 1200;
@@ -1469,7 +1469,10 @@ td {
     .sidebar-overlay {
         display: block;
         position: fixed;
-        inset: 0;
+        top: 64px;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: rgba(23, 32, 51, 0.25);
         opacity: 0;
         visibility: hidden;
