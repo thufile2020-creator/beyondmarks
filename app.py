@@ -89,8 +89,74 @@ def add_student():
  
     except Exception as e: 
         return jsonify({"error": str(e)}), 500 
- 
- 
+
+
+# UPDATE STUDENT
+@app.route("/api/students/<student_id>", methods=["PUT"])
+def update_student(student_id):
+    try:
+        data = request.get_json()
+
+        name = data["name"]
+        department = data["department"]
+        attendance = data.get("attendance", 0)
+
+        db = get_db_connection()
+        cursor = db.cursor()
+
+        sql = """
+            UPDATE students
+            SET name = %s, department = %s, attendance = %s
+            WHERE student_id = %s
+        """
+
+        cursor.execute(sql, (name, department, attendance, student_id))
+        db.commit()
+
+        affected = cursor.rowcount
+
+        cursor.close()
+        db.close()
+
+        if affected == 0:
+            return jsonify({"error": "Student not found"}), 404
+
+        return jsonify({"message": "Student updated successfully!"})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# DELETE STUDENT
+@app.route("/api/students/<student_id>", methods=["DELETE"])
+def delete_student(student_id):
+    try:
+        db = get_db_connection()
+        cursor = db.cursor()
+
+        # Remove related records first so nothing is left orphaned.
+        cursor.execute("DELETE FROM academics WHERE student_id = %s", (student_id,))
+        cursor.execute("DELETE FROM activities WHERE student_id = %s", (student_id,))
+        cursor.execute("DELETE FROM skills WHERE student_id = %s", (student_id,))
+        cursor.execute("DELETE FROM achievements WHERE student_id = %s", (student_id,))
+
+        cursor.execute("DELETE FROM students WHERE student_id = %s", (student_id,))
+        db.commit()
+
+        affected = cursor.rowcount
+
+        cursor.close()
+        db.close()
+
+        if affected == 0:
+            return jsonify({"error": "Student not found"}), 404
+
+        return jsonify({"message": "Student deleted successfully!"})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 # ADD ACADEMIC RECORD 
 @app.route("/api/academics", methods=["POST"]) 
 def add_academic(): 
@@ -356,4 +422,4 @@ def env_test():
         "TEST_VALUE": os.getenv("TEST_VALUE")
     }
 if __name__ == "__main__": 
-    app.run(debug=True)  
+    app.run(debug=True)
