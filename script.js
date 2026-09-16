@@ -738,53 +738,157 @@ function renderAchievements() {
    ADD STUDENT
 ========================= */
 
-async function addStudent(event) {
+async function saveStudent(event) {
     if (event) {
         event.preventDefault();
     }
 
-    const name =
-        document.getElementById("name");
+    const nameField = document.getElementById("name");
+    const studentIdField = document.getElementById("studentId");
+    const departmentField = document.getElementById("department");
+    const attendanceField = document.getElementById("attendance");
+    const editIdField = document.getElementById("editStudentId");
 
-    const studentId =
-        document.getElementById("studentId");
-
-    const department =
-        document.getElementById("department");
-
-    const attendance =
-        document.getElementById("attendance");
-
-    if (!name || !studentId || !department || !attendance) {
+    if (!nameField || !studentIdField || !departmentField || !attendanceField) {
         return;
     }
 
-    const data = {
-        name: name.value.trim(),
-        student_id: studentId.value.trim(),
-        department: department.value,
-        attendance: num(attendance.value)
+    const isEdit = Boolean(editIdField && editIdField.value);
+    const studentId = studentIdField.value.trim();
+
+    const studentData = {
+        name: nameField.value.trim(),
+        student_id: studentId,
+        department: departmentField.value,
+        attendance: num(attendanceField.value)
     };
 
     try {
-        await getData(API + "/api/students", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
+        if (isEdit) {
+            await getData(API + "/api/students/" + encodeURIComponent(studentId), {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(studentData)
+            });
+        } else {
+            await getData(API + "/api/students", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(studentData)
+            });
+        }
 
-        document.getElementById("studentForm").reset();
+        const marksEl = document.getElementById("marks");
+        const cgpaEl = document.getElementById("cgpa");
+
+        if (marksEl && cgpaEl) {
+            const marks = num(marksEl.value);
+            const cgpa = num(cgpaEl.value);
+
+            if (marks > 0 || cgpa > 0) {
+                await getData(API + "/api/academics", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        semester: num(document.getElementById("semester").value) || 1,
+                        marks: marks,
+                        cgpa: cgpa
+                    })
+                });
+            }
+        }
+
+        const checkedActivities = Array.from(
+            document.querySelectorAll("#activityCheckboxes input[type='checkbox']:checked")
+        );
+
+        for (const box of checkedActivities) {
+            await getData(API + "/api/activities", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    student_id: studentId,
+                    activity_name: box.value,
+                    activity_type: box.getAttribute("data-type") || "event",
+                    participation_date: new Date().toISOString().slice(0, 10)
+                })
+            });
+        }
+
+        const commEl = document.getElementById("communication");
+
+        if (commEl) {
+            const communication = num(commEl.value);
+            const teamwork = num(document.getElementById("teamwork").value);
+            const leadership = num(document.getElementById("leadership").value);
+            const technical = num(document.getElementById("technical").value);
+
+            if (communication || teamwork || leadership || technical) {
+                await getData(API + "/api/skills", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        communication: communication,
+                        teamwork: teamwork,
+                        leadership: leadership,
+                        technical: technical
+                    })
+                });
+            }
+        }
+
+        const achTitleEl = document.getElementById("achievementTitle");
+
+        if (achTitleEl) {
+            const achievementTitle = achTitleEl.value.trim();
+
+            if (achievementTitle) {
+                await getData(API + "/api/achievements", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        title: achievementTitle,
+                        level: document.getElementById("achievementLevel").value,
+                        year: num(document.getElementById("achievementYear").value) || new Date().getFullYear()
+                    })
+                });
+            }
+        }
 
         closeModal();
 
-        await loadStudents();
+        await refreshAll();
 
-        alert("Student added successfully.");
+        alert(isEdit ? "Student updated successfully." : "Student added successfully.");
     } catch (error) {
-        console.error("Add student:", error);
-        alert("Unable to add student.");
+        console.error("Save student:", error);
+        alert("Unable to save student.");
+    }
+}
+
+async function deleteStudent(studentId) {
+    const confirmed = confirm(
+        "Delete this student and all their academic, activity, skill and achievement records? This cannot be undone."
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+        await getData(API + "/api/students/" + encodeURIComponent(studentId), {
+            method: "DELETE"
+        });
+
+        await refreshAll();
+
+        alert("Student deleted successfully.");
+    } catch (error) {
+        console.error("Delete student:", error);
+        alert("Unable to delete student.");
     }
 }
 
