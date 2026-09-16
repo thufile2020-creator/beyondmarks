@@ -1,1062 +1,1018 @@
-\<!DOCTYPE html>
-\<html lang="en">
-\<head>
-    \<meta charset="UTF-8">
-    \<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    \<title>Beyond Marks | Student Development\</title>
+    <title>Beyond Marks | Student Development</title>
 
-    \<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-    \<link href="[https://fonts.googleapis.com/css2?family=Inter\:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter\:wght@400;500;600;700;800\&display=swap)" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    \<link rel="stylesheet"
-          href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css)">
-\</head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
 
-\<body>
+<body>
 
-\<!-- ================= SIDEBAR ================= -->
+<!-- ================= SIDEBAR ================= -->
 
-\<aside class="sidebar">
+<aside class="sidebar">
 
-    \<div class="logo">
-        \<div class="logo-icon">
-            \<i class="fa-solid fa-graduation-cap">\</i>
-        \</div>
-        \<div>
-            \<h2>Beyond\<span>Marks\</span>\</h2>
-            \<small>Student Development\</small>
-        \</div>
-    \</div>
+    <div class="logo">
+        <div class="logo-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+            <h2>Beyond<span>Marks</span></h2>
+            <small>Student Development</small>
+        </div>
+    </div>
 
-    \<nav class="menu">
+    <nav class="menu">
 
-        \<a href="#" class="menu-item active" onclick="showPage('dashboard')">
-            \<i class="fa-solid fa-chart-pie">\</i>
-            \<span>Dashboard\</span>
-        \</a>
+        <a href="#" class="menu-item active" onclick="showPage('dashboard')">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+        </a>
 
-        \<a href="#" class="menu-item" onclick="showPage('students')">
-            \<i class="fa-solid fa-user-graduate">\</i>
-            \<span>Students\</span>
-        \</a>
+        <a href="#" class="menu-item" onclick="showPage('students')">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>Students</span>
+        </a>
 
-        \<a href="#" class="menu-item" onclick="showPage('academics')">
-            \<i class="fa-solid fa-book-open">\</i>
-            \<span>Academics\</span>
-        \</a>
+        <a href="#" class="menu-item" onclick="showPage('academics')">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Academics</span>
+        </a>
 
-        \<a href="#" class="menu-item" onclick="showPage('activities')">
-            \<i class="fa-solid fa-trophy">\</i>
-            \<span>Activities\</span>
-        \</a>
+        <a href="#" class="menu-item" onclick="showPage('activities')">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Activities</span>
+        </a>
 
-        \<a href="#" class="menu-item" onclick="showPage('skills')">
-            \<i class="fa-solid fa-lightbulb">\</i>
-            \<span>Skills\</span>
-        \</a>
+        <a href="#" class="menu-item" onclick="showPage('skills')">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Skills</span>
+        </a>
 
-        \<a href="#" class="menu-item" onclick="showPage('achievements')">
-            \<i class="fa-solid fa-medal">\</i>
-            \<span>Achievements\</span>
-        \</a>
+        <a href="#" class="menu-item" onclick="showPage('achievements')">
+            <i class="fa-solid fa-medal"></i>
+            <span>Achievements</span>
+        </a>
 
-    \</nav>
+    </nav>
 
-    \<div class="sidebar-bottom">
+    <div class="sidebar-bottom">
 
-        \<a href="#" onclick="openSettings(); return false;">
-            \<i class="fa-solid fa-gear">\</i>
+        <a href="#" onclick="openSettings(); return false;">
+            <i class="fa-solid fa-gear"></i>
             Settings
-        \</a>
+        </a>
 
-        \<a href="#" onclick="showHelp(); return false;">
-            \<i class="fa-solid fa-circle-question">\</i>
+        <a href="#" onclick="showHelp(); return false;">
+            <i class="fa-solid fa-circle-question"></i>
             Help & Support
-        \</a>
+        </a>
 
-    \</div>
+    </div>
 
-\</aside>
+</aside>
 
 
+<div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
-\<!-- ================= MAIN ================= -->
+<!-- ================= MAIN ================= -->
 
-\<main class="main">
+<main class="main">
 
-    \<!-- TOP BAR -->
+    <!-- TOP BAR -->
 
-    \<header class="topbar">
+    <header class="topbar">
 
-        \<button class="mobile-menu" onclick="toggleSidebar()">
-            \<i class="fa-solid fa-bars">\</i>
-        \</button>
+        <button class="mobile-menu" onclick="toggleSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
-        \<div class="page-title">
-            \<h1>Student Development Dashboard\</h1>
-            \<p>Track growth beyond academic marks.\</p>
-        \</div>
+        <div class="page-title">
+            <h1>Student Development Dashboard</h1>
+            <p>Track growth beyond academic marks.</p>
+        </div>
 
-        \<div class="top-actions">
+        <div class="top-actions">
 
-            \<div class="search-box">
-                \<i class="fa-solid fa-magnifying-glass">\</i>
-                \<input type="text"
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text"
                        id="studentSearch"
                        placeholder="Search student..."
                        onkeyup="searchStudent()">
-            \</div>
+            </div>
 
-            \<div class="header-action-wrap">
-                \<button class="notification" id="notificationButton" type="button" aria-label="Open notifications" aria-expanded="false">
-                    \<i class="fa-regular fa-bell">\</i>
-                    \<span id="notificationBadge">\</span>
-                \</button>
+            <div class="header-action-wrap">
+                <button class="notification" id="notificationButton" type="button" aria-label="Open notifications" aria-expanded="false">
+                    <i class="fa-regular fa-bell"></i>
+                    <span id="notificationBadge"></span>
+                </button>
 
-                \<div class="notification-panel" id="notificationPanel" hidden>
-                    \<div class="panel-header">
-                        \<div>
-                            \<strong>Notifications\</strong>
-                            \<small id="notificationCount">0 new updates\</small>
-                        \</div>
-                        \<button type="button" class="panel-link" onclick="markNotificationsRead()">Mark all read\</button>
-                    \</div>
-                    \<div id="notificationList" class="notification-list">\</div>
-                \</div>
-            \</div>
+                <div class="notification-panel" id="notificationPanel" hidden>
+                    <div class="panel-header">
+                        <div>
+                            <strong>Notifications</strong>
+                            <small id="notificationCount">0 new updates</small>
+                        </div>
+                        <button type="button" class="panel-link" onclick="markNotificationsRead()">Mark all read</button>
+                    </div>
+                    <div id="notificationList" class="notification-list"></div>
+                </div>
+            </div>
 
-            \<div class="header-action-wrap profile-wrap">
-                \<button class="profile" id="profileButton" type="button" aria-label="Open profile menu" aria-expanded="false">
-                    \<div class="avatar">DR\</div>
-                    \<div>
-                        \<strong>Dr. Rahul\</strong>
-                        \<small>Faculty\</small>
-                    \</div>
-                    \<i class="fa-solid fa-chevron-down">\</i>
-                \</button>
+            <div class="header-action-wrap profile-wrap">
+                <button class="profile" id="profileButton" type="button" aria-label="Open profile menu" aria-expanded="false">
+                    <div class="avatar">DR</div>
+                    <div>
+                        <strong>Dr. Rahul</strong>
+                        <small>Faculty</small>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
 
-                \<div class="profile-menu" id="profileMenu" hidden>
-                    \<div class="profile-menu-head">
-                        \<div class="avatar large">DR\</div>
-                        \<div>
-                            \<strong>Dr. Rahul\</strong>
-                            \<small>Faculty • Student Development\</small>
-                        \</div>
-                    \</div>
-                    \<button type="button" onclick="openProfile()">\<i class="fa-regular fa-user">\</i> My Profile\</button>
-                    \<button type="button" onclick="openSettings()">\<i class="fa-solid fa-gear">\</i> Settings\</button>
-                    \<button type="button" onclick="showHelp()">\<i class="fa-regular fa-circle-question">\</i> Help & Support\</button>
-                    \<div class="menu-divider">\</div>
-                    \<button type="button" class="logout-item" onclick="logoutUser()">\<i class="fa-solid fa-right-from-bracket">\</i> Logout\</button>
-                \</div>
-            \</div>
+                <div class="profile-menu" id="profileMenu" hidden>
+                    <div class="profile-menu-head">
+                        <div class="avatar large">DR</div>
+                        <div>
+                            <strong>Dr. Rahul</strong>
+                            <small>Faculty • Student Development</small>
+                        </div>
+                    </div>
+                    <button type="button" onclick="openProfile()"><i class="fa-regular fa-user"></i> My Profile</button>
+                    <button type="button" onclick="openSettings()"><i class="fa-solid fa-gear"></i> Settings</button>
+                    <button type="button" onclick="showHelp()"><i class="fa-regular fa-circle-question"></i> Help & Support</button>
+                    <div class="menu-divider"></div>
+                    <button type="button" class="logout-item" onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </div>
+            </div>
 
-        \</div>
+        </div>
 
-    \</header>
+    </header>
 
 
+    <!-- ================= DASHBOARD ================= -->
 
-    \<!-- ================= DASHBOARD ================= -->
+    <section id="dashboard" class="page active-page">
 
-    \<section id="dashboard" class="page active-page">
+        <div class="welcome">
 
-        \<div class="welcome">
+            <div>
+                <span class="welcome-tag">ACADEMIC YEAR 2026–27</span>
 
-            \<div>
-                \<span class="welcome-tag">ACADEMIC YEAR 2026–27\</span>
+                <h2>Good evening, Dr. Rahul 👋</h2>
 
-                \<h2>Good evening, Dr. Rahul 👋\</h2>
-
-                \<p>
+                <p>
                     Here's an overview of your students' holistic development.
-                \</p>
-            \</div>
+                </p>
+            </div>
 
-            \<button class="primary-btn" onclick="openModal()">
-                \<i class="fa-solid fa-plus">\</i>
+            <button class="primary-btn" onclick="openModal()">
+                <i class="fa-solid fa-plus"></i>
                 Add Student
-            \</button>
+            </button>
 
-        \</div>
+        </div>
 
 
+        <!-- STAT CARDS -->
 
-        \<!-- STAT CARDS -->
+        <div class="stats-grid">
 
-        \<div class="stats-grid">
+            <div class="stat-card">
 
-            \<div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
 
-                \<div class="stat-icon blue">
-                    \<i class="fa-solid fa-user-graduate">\</i>
-                \</div>
+                <div>
+                    <p>Total Students</p>
+                    <h3 id="totalStudents">0</h3>
 
-                \<div>
-                    \<p>Total Students\</p>
-                    \<h3 id="totalStudents">0\</h3>
+                    <span class="positive">
+                        <i class="fa-solid fa-arrow-up"></i> Live
+                    </span>
 
-                    \<span class="positive">
-                        \<i class="fa-solid fa-arrow-up">\</i> Live
-                    \</span>
+                    <small> from database</small>
+                </div>
 
-                    \<small> from database\</small>
-                \</div>
+            </div>
 
-            \</div>
 
+            <div class="stat-card">
 
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
 
-            \<div class="stat-card">
+                <div>
+                    <p>Avg. Attendance</p>
+                    <h3 id="averageAttendance">0%</h3>
 
-                \<div class="stat-icon green">
-                    \<i class="fa-solid fa-calendar-check">\</i>
-                \</div>
+                    <span class="positive">
+                        <i class="fa-solid fa-arrow-up"></i> Live
+                    </span>
 
-                \<div>
-                    \<p>Avg. Attendance\</p>
-                    \<h3 id="averageAttendance">0%\</h3>
+                    <small> from database</small>
+                </div>
 
-                    \<span class="positive">
-                        \<i class="fa-solid fa-arrow-up">\</i> Live
-                    \</span>
+            </div>
 
-                    \<small> from database\</small>
-                \</div>
 
-            \</div>
+            <div class="stat-card">
 
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
 
+                <div>
+                    <p>Activities</p>
+                    <h3 id="totalActivities">0</h3>
 
-            \<div class="stat-card">
+                    <span class="positive">
+                        <i class="fa-solid fa-arrow-up"></i> Live
+                    </span>
 
-                \<div class="stat-icon orange">
-                    \<i class="fa-solid fa-trophy">\</i>
-                \</div>
+                    <small> from database</small>
+                </div>
 
-                \<div>
-                    \<p>Activities\</p>
-                    \<h3 id="totalActivities">0\</h3>
+            </div>
 
-                    \<span class="positive">
-                        \<i class="fa-solid fa-arrow-up">\</i> Live
-                    \</span>
 
-                    \<small> from database\</small>
-                \</div>
+            <div class="stat-card">
 
-            \</div>
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-medal"></i>
+                </div>
 
+                <div>
+                    <p>Achievements</p>
+                    <h3 id="totalAchievements">0</h3>
 
+                    <span class="positive">
+                        <i class="fa-solid fa-arrow-up"></i> Live
+                    </span>
 
-            \<div class="stat-card">
+                    <small> from database</small>
+                </div>
 
-                \<div class="stat-icon purple">
-                    \<i class="fa-solid fa-medal">\</i>
-                \</div>
+            </div>
 
-                \<div>
-                    \<p>Achievements\</p>
-                    \<h3 id="totalAchievements">0\</h3>
+        </div>
 
-                    \<span class="positive">
-                        \<i class="fa-solid fa-arrow-up">\</i> Live
-                    \</span>
 
-                    \<small> from database\</small>
-                \</div>
+        <!-- CONTENT GRID -->
 
-            \</div>
+        <div class="content-grid">
 
-        \</div>
+            <!-- DEVELOPMENT OVERVIEW -->
 
+            <div class="card development-card">
 
+                <div class="card-header">
 
-        \<!-- CONTENT GRID -->
+                    <div>
+                        <h3>Holistic Development</h3>
+                        <p>Average student development across key areas</p>
+                    </div>
 
-        \<div class="content-grid">
+                    <select>
+                        <option>This Semester</option>
+                        <option>Last Semester</option>
+                        <option>Academic Year</option>
+                    </select>
 
-            \<!-- DEVELOPMENT OVERVIEW -->
+                </div>
 
-            \<div class="card development-card">
 
-                \<div class="card-header">
+                <div class="development-list">
 
-                    \<div>
-                        \<h3>Holistic Development\</h3>
-                        \<p>Average student development across key areas\</p>
-                    \</div>
+                    <div class="development-item">
 
-                    \<select>
-                        \<option>This Semester\</option>
-                        \<option>Last Semester\</option>
-                        \<option>Academic Year\</option>
-                    \</select>
+                        <div class="development-info">
 
-                \</div>
+                            <span class="circle blue-circle">
+                                <i class="fa-solid fa-book"></i>
+                            </span>
 
+                            <div>
+                                <strong>Academic Performance</strong>
+                                <small>Marks & GPA</small>
+                            </div>
 
+                            <b id="dashboardAcademic">0%</b>
 
-                \<div class="development-list">
+                        </div>
 
-                    \<div class="development-item">
+                        <div class="progress">
+                            <div id="dashboardAcademicBar" style="width:0%"></div>
+                        </div>
 
-                        \<div class="development-info">
+                    </div>
 
-                            \<span class="circle blue-circle">
-                                \<i class="fa-solid fa-book">\</i>
-                            \</span>
 
-                            \<div>
-                                \<strong>Academic Performance\</strong>
-                                \<small>Marks & GPA\</small>
-                            \</div>
+                    <div class="development-item">
 
-                            \<b id="dashboardAcademic">0%\</b>
+                        <div class="development-info">
 
-                        \</div>
+                            <span class="circle green-circle">
+                                <i class="fa-solid fa-calendar"></i>
+                            </span>
 
-                        \<div class="progress">
-                            \<div id="dashboardAcademicBar" style="width:0%">\</div>
-                        \</div>
+                            <div>
+                                <strong>Attendance</strong>
+                                <small>Classes attended</small>
+                            </div>
 
-                    \</div>
+                            <b id="dashboardAttendance">0%</b>
 
+                        </div>
 
+                        <div class="progress">
+                            <div id="dashboardAttendanceBar" style="width:0%"></div>
+                        </div>
 
-                    \<div class="development-item">
+                    </div>
 
-                        \<div class="development-info">
 
-                            \<span class="circle green-circle">
-                                \<i class="fa-solid fa-calendar">\</i>
-                            \</span>
+                    <div class="development-item">
 
-                            \<div>
-                                \<strong>Attendance\</strong>
-                                \<small>Classes attended\</small>
-                            \</div>
+                        <div class="development-info">
 
-                            \<b id="dashboardAttendance">0%\</b>
+                            <span class="circle orange-circle">
+                                <i class="fa-solid fa-people-group"></i>
+                            </span>
 
-                        \</div>
+                            <div>
+                                <strong>Activities</strong>
+                                <small>Clubs & events</small>
+                            </div>
 
-                        \<div class="progress">
-                            \<div id="dashboardAttendanceBar" style="width:0%">\</div>
-                        \</div>
+                            <b id="dashboardActivities">0%</b>
 
-                    \</div>
+                        </div>
 
+                        <div class="progress">
+                            <div id="dashboardActivitiesBar" style="width:0%"></div>
+                        </div>
 
+                    </div>
 
-                    \<div class="development-item">
 
-                        \<div class="development-info">
+                    <div class="development-item">
 
-                            \<span class="circle orange-circle">
-                                \<i class="fa-solid fa-people-group">\</i>
-                            \</span>
+                        <div class="development-info">
 
-                            \<div>
-                                \<strong>Activities\</strong>
-                                \<small>Clubs & events\</small>
-                            \</div>
+                            <span class="circle purple-circle">
+                                <i class="fa-solid fa-comments"></i>
+                            </span>
 
-                            \<b id="dashboardActivities">0%\</b>
+                            <div>
+                                <strong>Soft Skills</strong>
+                                <small>Communication & teamwork</small>
+                            </div>
 
-                        \</div>
+                            <b id="dashboardSkills">0%</b>
 
-                        \<div class="progress">
-                            \<div id="dashboardActivitiesBar" style="width:0%">\</div>
-                        \</div>
+                        </div>
 
-                    \</div>
+                        <div class="progress">
+                            <div id="dashboardSkillsBar" style="width:0%"></div>
+                        </div>
 
+                    </div>
 
+                </div>
 
-                    \<div class="development-item">
+            </div>
 
-                        \<div class="development-info">
 
-                            \<span class="circle purple-circle">
-                                \<i class="fa-solid fa-comments">\</i>
-                            \</span>
+            <!-- OVERALL SCORE -->
 
-                            \<div>
-                                \<strong>Soft Skills\</strong>
-                                \<small>Communication & teamwork\</small>
-                            \</div>
+            <div class="card score-card">
 
-                            \<b id="dashboardSkills">0%\</b>
+                <div class="card-header">
 
-                        \</div>
+                    <div>
+                        <h3>Overall Development</h3>
+                        <p>Institution average</p>
+                    </div>
 
-                        \<div class="progress">
-                            \<div id="dashboardSkillsBar" style="width:0%">\</div>
-                        \</div>
+                    <i class="fa-solid fa-ellipsis"></i>
 
-                    \</div>
+                </div>
 
-                \</div>
 
-            \</div>
+                <div class="score-circle">
 
+                    <div class="score-inner">
+                        <strong id="overallDevelopment">0</strong>
+                        <span>/ 100</span>
+                    </div>
 
+                </div>
 
-            \<!-- OVERALL SCORE -->
 
-            \<div class="card score-card">
+                <div class="score-status">
 
-                \<div class="card-header">
+                    <span class="status-dot"></span>
 
-                    \<div>
-                        \<h3>Overall Development\</h3>
-                        \<p>Institution average\</p>
-                    \</div>
+                    <strong>Live</strong>
 
-                    \<i class="fa-solid fa-ellipsis">\</i>
+                    <span>from database</span>
 
-                \</div>
+                </div>
 
 
+                <div class="score-breakdown">
 
-                \<div class="score-circle">
+                    <div>
+                        <span>Academics</span>
+                        <b id="overallAcademics">0</b>
+                    </div>
 
-                    \<div class="score-inner">
-                        \<strong id="overallDevelopment">0\</strong>
-                        \<span>/ 100\</span>
-                    \</div>
+                    <div>
+                        <span>Activities</span>
+                        <b id="overallActivities">0</b>
+                    </div>
 
-                \</div>
+                    <div>
+                        <span>Skills</span>
+                        <b id="overallSkills">0</b>
+                    </div>
 
+                </div>
 
+            </div>
 
-                \<div class="score-status">
+        </div>
 
-                    \<span class="status-dot">\</span>
 
-                    \<strong>Live\</strong>
+        <!-- STUDENTS TABLE -->
 
-                    \<span>from database\</span>
+        <div class="card students-card">
 
-                \</div>
+            <div class="card-header">
 
+                <div>
+                    <h3>Recent Students</h3>
+                    <p>Recently updated student profiles</p>
+                </div>
 
-
-                \<div class="score-breakdown">
-
-                    \<div>
-                        \<span>Academics\</span>
-                        \<b id="overallAcademics">0\</b>
-                    \</div>
-
-                    \<div>
-                        \<span>Activities\</span>
-                        \<b id="overallActivities">0\</b>
-                    \</div>
-
-                    \<div>
-                        \<span>Skills\</span>
-                        \<b id="overallSkills">0\</b>
-                    \</div>
-
-                \</div>
-
-            \</div>
-
-        \</div>
-
-
-
-        \<!-- STUDENTS TABLE -->
-
-        \<div class="card students-card">
-
-            \<div class="card-header">
-
-                \<div>
-                    \<h3>Recent Students\</h3>
-                    \<p>Recently updated student profiles\</p>
-                \</div>
-
-                \<button class="outline-btn" onclick="showPage('students')">
+                <button class="outline-btn" onclick="showPage('students')">
                     View All
-                    \<i class="fa-solid fa-arrow-right">\</i>
-                \</button>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
 
-            \</div>
-
-
-
-            \<div class="table-container">
-
-                \<table>
-
-                    \<thead>
-
-                        \<tr>
-                            \<th>Student\</th>
-                            \<th>Department\</th>
-                            \<th>Academic\</th>
-                            \<th>Attendance\</th>
-                            \<th>Activities\</th>
-                            \<th>Overall\</th>
-                            \<th>Status\</th>
-                        \</tr>
-
-                    \</thead>
-
-                    \<tbody id="recentStudentTable">
-                    \</tbody>
-
-                \</table>
-
-            \</div>
-
-        \</div>
-
-    \</section>
+            </div>
 
 
+            <div class="table-container">
 
-    \<!-- ================= STUDENTS PAGE ================= -->
+                <table>
 
-    \<section id="students" class="page">
+                    <thead>
 
-        \<div class="page-heading">
+                        <tr>
+                            <th>Student</th>
+                            <th>Department</th>
+                            <th>Academic</th>
+                            <th>Attendance</th>
+                            <th>Activities</th>
+                            <th>Overall</th>
+                            <th>Status</th>
+                        </tr>
 
-            \<div>
-                \<h2>Students\</h2>
-                \<p>Manage and monitor student development.\</p>
-            \</div>
+                    </thead>
 
-            \<button class="primary-btn" onclick="openModal()">
-                \<i class="fa-solid fa-plus">\</i>
+                    <tbody id="recentStudentTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STUDENTS PAGE ================= -->
+
+    <section id="students" class="page">
+
+        <div class="page-heading">
+
+            <div>
+                <h2>Students</h2>
+                <p>Manage and monitor student development.</p>
+            </div>
+
+            <button class="primary-btn" onclick="openModal()">
+                <i class="fa-solid fa-plus"></i>
                 Add Student
-            \</button>
+            </button>
 
-        \</div>
+        </div>
 
 
+        <div class="student-grid" id="studentGrid">
+        </div>
 
-        \<div class="student-grid" id="studentGrid">
-        \</div>
+        <div class="card students-card">
 
-        \<div class="card students-card">
+            <div class="card-header">
 
-            \<div class="card-header">
+                <div>
+                    <h3>Student Records</h3>
+                    <p>All students from the database</p>
+                </div>
 
-                \<div>
-                    \<h3>Student Records\</h3>
-                    \<p>All students from the database\</p>
-                \</div>
+            </div>
 
-            \</div>
+            <div class="table-container">
 
-            \<div class="table-container">
+                <table>
 
-                \<table>
+                    <thead>
 
-                    \<thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Department</th>
+                            <th>Academic</th>
+                            <th>Attendance</th>
+                            <th>Activities</th>
+                            <th>Overall</th>
+                            <th>Status</th>
+                        </tr>
 
-                        \<tr>
-                            \<th>Student\</th>
-                            \<th>Department\</th>
-                            \<th>Academic\</th>
-                            \<th>Attendance\</th>
-                            \<th>Activities\</th>
-                            \<th>Overall\</th>
-                            \<th>Status\</th>
-                        \</tr>
+                    </thead>
 
-                    \</thead>
+                    <tbody id="studentTable">
+                    </tbody>
 
-                    \<tbody id="studentTable">
-                    \</tbody>
+                </table>
 
-                \</table>
+            </div>
 
-            \</div>
+        </div>
 
-        \</div>
+    </section>
 
-    \</section>
 
+    <!-- ================= ACADEMICS PAGE ================= -->
 
+    <section id="academics" class="page">
 
-    \<!-- ================= ACADEMICS PAGE ================= -->
+        <div class="page-heading">
 
-    \<section id="academics" class="page">
+            <div>
+                <h2>Academic Performance</h2>
+                <p>Track academic progress and performance.</p>
+            </div>
 
-        \<div class="page-heading">
+        </div>
 
-            \<div>
-                \<h2>Academic Performance\</h2>
-                \<p>Track academic progress and performance.\</p>
-            \</div>
 
-        \</div>
+        <div class="academic-overview">
 
+            <div class="card academic-box">
 
+                <i class="fa-solid fa-graduation-cap"></i>
 
-        \<div class="academic-overview">
+                <span>Average CGPA</span>
 
-            \<div class="card academic-box">
+                <strong id="averageCgpa">0.00</strong>
 
-                \<i class="fa-solid fa-graduation-cap">\</i>
+            </div>
 
-                \<span>Average CGPA\</span>
 
-                \<strong id="averageCgpa">0.00\</strong>
+            <div class="card academic-box">
 
-            \</div>
+                <i class="fa-solid fa-chart-line"></i>
 
+                <span>Average Score</span>
 
+                <strong id="averageScore">0%</strong>
 
-            \<div class="card academic-box">
+            </div>
 
-                \<i class="fa-solid fa-chart-line">\</i>
 
-                \<span>Average Score\</span>
+            <div class="card academic-box">
 
-                \<strong id="averageScore">0%\</strong>
+                <i class="fa-solid fa-arrow-trend-up"></i>
 
-            \</div>
+                <span>Improvement</span>
 
+                <strong id="improvement">0%</strong>
 
+            </div>
 
-            \<div class="card academic-box">
+        </div>
 
-                \<i class="fa-solid fa-arrow-trend-up">\</i>
 
-                \<span>Improvement\</span>
+        <div class="card">
 
-                \<strong id="improvement">0%\</strong>
+            <div class="card-header">
 
-            \</div>
+                <div>
+                    <h3>Academic Performance</h3>
+                    <p>Department-wise performance</p>
+                </div>
 
-        \</div>
+            </div>
 
 
+            <div class="academic-bars">
 
-        \<div class="card">
+                <div>
 
-            \<div class="card-header">
+                    <span>CSE</span>
 
-                \<div>
-                    \<h3>Academic Performance\</h3>
-                    \<p>Department-wise performance\</p>
-                \</div>
+                    <div class="progress">
+                        <div id="cseBar" style="width:0%"></div>
+                    </div>
 
-            \</div>
+                    <b id="cseScore">0%</b>
 
+                </div>
 
 
-            \<div class="academic-bars">
+                <div>
 
-                \<div>
+                    <span>ECE</span>
 
-                    \<span>CSE\</span>
+                    <div class="progress">
+                        <div style="width:82%"></div>
+                    </div>
 
-                    \<div class="progress">
-                        \<div id="cseBar" style="width:0%">\</div>
-                    \</div>
+                    <b>82%</b>
 
-                    \<b id="cseScore">0%\</b>
+                </div>
 
-                \</div>
 
+                <div>
 
+                    <span>IT</span>
 
-                \<div>
+                    <div class="progress">
+                        <div style="width:79%"></div>
+                    </div>
 
-                    \<span>ECE\</span>
+                    <b>79%</b>
 
-                    \<div class="progress">
-                        \<div style="width:82%">\</div>
-                    \</div>
+                </div>
 
-                    \<b>82%\</b>
 
-                \</div>
+                <div>
 
+                    <span>EEE</span>
 
+                    <div class="progress">
+                        <div style="width:76%"></div>
+                    </div>
 
-                \<div>
+                    <b>76%</b>
 
-                    \<span>IT\</span>
+                </div>
 
-                    \<div class="progress">
-                        \<div style="width:79%">\</div>
-                    \</div>
+            </div>
 
-                    \<b>79%\</b>
+        </div>
 
-                \</div>
+    </section>
 
 
+    <!-- ================= ACTIVITIES PAGE ================= -->
 
-                \<div>
+    <section id="activities" class="page">
 
-                    \<span>EEE\</span>
+        <div class="page-heading">
 
-                    \<div class="progress">
-                        \<div style="width:76%">\</div>
-                    \</div>
+            <div>
+                <h2>Activities & Participation</h2>
+                <p>Track clubs, events and extracurricular participation.</p>
+            </div>
 
-                    \<b>76%\</b>
+        </div>
 
-                \</div>
 
-            \</div>
+        <div class="activity-grid">
 
-        \</div>
+            <div class="activity-card">
 
-    \</section>
+                <div class="activity-icon">
+                    <i class="fa-solid fa-code"></i>
+                </div>
 
+                <h3>Technical Clubs</h3>
 
+                <strong id="technicalClubs">0</strong>
 
-    \<!-- ================= ACTIVITIES PAGE ================= -->
+                <p>Students participated</p>
 
-    \<section id="activities" class="page">
+            </div>
 
-        \<div class="page-heading">
 
-            \<div>
-                \<h2>Activities & Participation\</h2>
-                \<p>Track clubs, events and extracurricular participation.\</p>
-            \</div>
+            <div class="activity-card">
 
-        \</div>
+                <div class="activity-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
 
+                <h3>Events</h3>
 
+                <strong id="eventsCount">0</strong>
 
-        \<div class="activity-grid">
+                <p>Events participated</p>
 
-            \<div class="activity-card">
+            </div>
 
-                \<div class="activity-icon">
-                    \<i class="fa-solid fa-code">\</i>
-                \</div>
 
-                \<h3>Technical Clubs\</h3>
+            <div class="activity-card">
 
-                \<strong id="technicalClubs">0\</strong>
+                <div class="activity-icon">
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
 
-                \<p>Students participated\</p>
+                <h3>Team Activities</h3>
 
-            \</div>
+                <strong id="teamActivities">0</strong>
 
+                <p>Students participated</p>
 
+            </div>
 
-            \<div class="activity-card">
+        </div>
 
-                \<div class="activity-icon">
-                    \<i class="fa-solid fa-microphone">\</i>
-                \</div>
+    </section>
 
-                \<h3>Events\</h3>
 
-                \<strong id="eventsCount">0\</strong>
+    <!-- ================= SKILLS PAGE ================= -->
 
-                \<p>Events participated\</p>
+    <section id="skills" class="page">
 
-            \</div>
+        <div class="page-heading">
 
+            <div>
+                <h2>Skills Development</h2>
+                <p>Monitor technical and soft-skill development.</p>
+            </div>
 
+        </div>
 
-            \<div class="activity-card">
 
-                \<div class="activity-icon">
-                    \<i class="fa-solid fa-people-group">\</i>
-                \</div>
+        <div class="skills-container card">
 
-                \<h3>Team Activities\</h3>
+            <div class="skill-row">
 
-                \<strong id="teamActivities">0\</strong>
+                <div>
+                    <strong>Communication</strong>
+                    <small>Presentation & speaking</small>
+                </div>
 
-                \<p>Students participated\</p>
+                <div class="skill-progress">
+                    <div style="width:79%"></div>
+                </div>
 
-            \</div>
+                <b id="communicationScore">0%</b>
 
-        \</div>
+            </div>
 
-    \</section>
 
+            <div class="skill-row">
 
+                <div>
+                    <strong>Teamwork</strong>
+                    <small>Collaboration</small>
+                </div>
 
-    \<!-- ================= SKILLS PAGE ================= -->
+                <div class="skill-progress">
+                    <div style="width:84%"></div>
+                </div>
 
-    \<section id="skills" class="page">
+                <b id="teamworkScore">0%</b>
 
-        \<div class="page-heading">
+            </div>
 
-            \<div>
-                \<h2>Skills Development\</h2>
-                \<p>Monitor technical and soft-skill development.\</p>
-            \</div>
 
-        \</div>
+            <div class="skill-row">
 
+                <div>
+                    <strong>Leadership</strong>
+                    <small>Leadership activities</small>
+                </div>
 
+                <div class="skill-progress">
+                    <div style="width:72%"></div>
+                </div>
 
-        \<div class="skills-container card">
+                <b id="leadershipScore">0%</b>
 
-            \<div class="skill-row">
+            </div>
 
-                \<div>
-                    \<strong>Communication\</strong>
-                    \<small>Presentation & speaking\</small>
-                \</div>
 
-                \<div class="skill-progress">
-                    \<div style="width:79%">\</div>
-                \</div>
+            <div class="skill-row">
 
-                \<b id="communicationScore">0%\</b>
+                <div>
+                    <strong>Technical Skills</strong>
+                    <small>Programming & technology</small>
+                </div>
 
-            \</div>
+                <div class="skill-progress">
+                    <div style="width:88%"></div>
+                </div>
 
+                <b id="technicalScore">0%</b>
 
+            </div>
 
-            \<div class="skill-row">
+        </div>
 
-                \<div>
-                    \<strong>Teamwork\</strong>
-                    \<small>Collaboration\</small>
-                \</div>
+    </section>
 
-                \<div class="skill-progress">
-                    \<div style="width:84%">\</div>
-                \</div>
 
-                \<b id="teamworkScore">0%\</b>
+    <!-- ================= ACHIEVEMENTS PAGE ================= -->
 
-            \</div>
+    <section id="achievements" class="page">
 
+        <div class="page-heading">
 
+            <div>
+                <h2>Achievements</h2>
+                <p>Recognize student accomplishments.</p>
+            </div>
 
-            \<div class="skill-row">
-
-                \<div>
-                    \<strong>Leadership\</strong>
-                    \<small>Leadership activities\</small>
-                \</div>
-
-                \<div class="skill-progress">
-                    \<div style="width:72%">\</div>
-                \</div>
-
-                \<b id="leadershipScore">0%\</b>
-
-            \</div>
-
-
-
-            \<div class="skill-row">
-
-                \<div>
-                    \<strong>Technical Skills\</strong>
-                    \<small>Programming & technology\</small>
-                \</div>
-
-                \<div class="skill-progress">
-                    \<div style="width:88%">\</div>
-                \</div>
-
-                \<b id="technicalScore">0%\</b>
-
-            \</div>
-
-        \</div>
-
-    \</section>
-
-
-
-    \<!-- ================= ACHIEVEMENTS PAGE ================= -->
-
-    \<section id="achievements" class="page">
-
-        \<div class="page-heading">
-
-            \<div>
-                \<h2>Achievements\</h2>
-                \<p>Recognize student accomplishments.\</p>
-            \</div>
-
-            \<button class="primary-btn" onclick="openModal()">
-                \<i class="fa-solid fa-plus">\</i>
+            <button class="primary-btn" onclick="openModal()">
+                <i class="fa-solid fa-plus"></i>
                 Add Achievement
-            \</button>
+            </button>
 
-        \</div>
+        </div>
 
 
+        <div class="achievement-grid">
 
-        \<div class="achievement-grid">
+            <div class="achievement-card">
 
-            \<div class="achievement-card">
-
-                \<div class="medal">
+                <div class="medal">
                     🥇
-                \</div>
+                </div>
 
-                \<h3 id="achievementTitle">No achievement yet\</h3>
+                <h3 id="achievementTitle">No achievement yet</h3>
 
-                \<p id="achievementStudent">No student\</p>
+                <p id="achievementStudent">No student</p>
 
-                \<small id="achievementDetails">-\</small>
+                <small id="achievementDetails">-</small>
 
-            \</div>
+            </div>
 
-        \</div>
+        </div>
 
-    \</section>
+    </section>
 
-\</main>
-
-
-
-\<!-- ================= PROFILE / SETTINGS / NOTIFICATION UI ================= -->
-
-\<div class="modal-overlay" id="profileModal" hidden>
-    \<div class="modal utility-modal">
-        \<button class="close-modal" type="button" onclick="closeUtilityModal('profileModal')">\<i class="fa-solid fa-xmark">\</i>\</button>
-        \<div class="utility-icon">\<i class="fa-regular fa-user">\</i>\</div>
-        \<h2>My Profile\</h2>
-        \<p>Your faculty account information.\</p>
-        \<div class="profile-detail-grid">
-            \<div>\<small>Name\</small>\<strong>Dr. Rahul\</strong>\</div>
-            \<div>\<small>Role\</small>\<strong>Faculty\</strong>\</div>
-            \<div>\<small>Department\</small>\<strong>Computer Science & Engineering\</strong>\</div>
-            \<div>\<small>Academic Year\</small>\<strong>2026–27\</strong>\</div>
-        \</div>
-    \</div>
-\</div>
-
-\<div class="modal-overlay" id="settingsModal" hidden>
-    \<div class="modal utility-modal">
-        \<button class="close-modal" type="button" onclick="closeUtilityModal('settingsModal')">\<i class="fa-solid fa-xmark">\</i>\</button>
-        \<div class="utility-icon">\<i class="fa-solid fa-gear">\</i>\</div>
-        \<h2>Settings\</h2>
-        \<p>Customize your BeyondMarks dashboard.\</p>
-        \<div class="settings-list">
-            \<label class="setting-row">\<span>\<strong>Notifications\</strong>\<small>Show notification alerts in the header\</small>\</span>\<input id="notificationsToggle" type="checkbox" checked onchange="saveSetting('notifications', this.checked)">\</label>
-            \<label class="setting-row">\<span>\<strong>Compact mode\</strong>\<small>Reduce spacing across dashboard cards\</small>\</span>\<input id="compactToggle" type="checkbox" onchange="saveSetting('compact', this.checked)">\</label>
-        \</div>
-        \<button class="primary-btn full-btn" type="button" onclick="closeUtilityModal('settingsModal')">Save & Close\</button>
-    \</div>
-\</div>
-
-\<div class="modal-overlay" id="helpModal" hidden>
-    \<div class="modal utility-modal">
-        \<button class="close-modal" type="button" onclick="closeUtilityModal('helpModal')">\<i class="fa-solid fa-xmark">\</i>\</button>
-        \<div class="utility-icon">\<i class="fa-regular fa-circle-question">\</i>\</div>
-        \<h2>Help & Support\</h2>
-        \<p>Quick help for using the dashboard.\</p>
-        \<div class="help-list">
-            \<div>\<i class="fa-solid fa-user-graduate">\</i>\<span>\<strong>Students\</strong>\<small>Add and search student development profiles.\</small>\</span>\</div>
-            \<div>\<i class="fa-solid fa-chart-line">\</i>\<span>\<strong>Analytics\</strong>\<small>Use Academics, Activities and Skills to review progress.\</small>\</span>\</div>
-            \<div>\<i class="fa-solid fa-bell">\</i>\<span>\<strong>Notifications\</strong>\<small>Open the bell to see attendance and achievement updates.\</small>\</span>\</div>
-        \</div>
-    \</div>
-\</div>
-
-\<div class="signed-out-screen" id="signedOutScreen" hidden>
-    \<div class="signed-out-card">
-        \<div class="utility-icon">\<i class="fa-solid fa-right-from-bracket">\</i>\</div>
-        \<h2>You are signed out\</h2>
-        \<p>This dashboard uses frontend session state. Backend authentication can be added separately for secure access.\</p>
-        \<button class="primary-btn" type="button" onclick="signInAgain()">Return to Dashboard\</button>
-    \</div>
-\</div>
-
-\<!-- ================= ADD STUDENT MODAL ================= -->
-
-\<div class="modal-overlay" id="modal">
-
-    \<div class="modal">
-
-        \<button class="close-modal" onclick="closeModal()">
-            \<i class="fa-solid fa-xmark">\</i>
-        \</button>
-
-        \<h2>Add Student\</h2>
-
-        \<p>Create a new student development profile.\</p>
+</main>
 
 
+<!-- ================= PROFILE / SETTINGS / NOTIFICATION UI ================= -->
 
-        \<form id="studentForm" onsubmit="addStudent(event); return false;">
+<div class="modal-overlay" id="profileModal" hidden>
+    <div class="modal utility-modal">
+        <button class="close-modal" type="button" onclick="closeUtilityModal('profileModal')"><i class="fa-solid fa-xmark"></i></button>
+        <div class="utility-icon"><i class="fa-regular fa-user"></i></div>
+        <h2>My Profile</h2>
+        <p>Your faculty account information.</p>
+        <div class="profile-detail-grid">
+            <div><small>Name</small><strong>Dr. Rahul</strong></div>
+            <div><small>Role</small><strong>Faculty</strong></div>
+            <div><small>Department</small><strong>Computer Science & Engineering</strong></div>
+            <div><small>Academic Year</small><strong>2026–27</strong></div>
+        </div>
+    </div>
+</div>
 
-            \<label>Student Name\</label>
+<div class="modal-overlay" id="settingsModal" hidden>
+    <div class="modal utility-modal">
+        <button class="close-modal" type="button" onclick="closeUtilityModal('settingsModal')"><i class="fa-solid fa-xmark"></i></button>
+        <div class="utility-icon"><i class="fa-solid fa-gear"></i></div>
+        <h2>Settings</h2>
+        <p>Customize your BeyondMarks dashboard.</p>
+        <div class="settings-list">
+            <label class="setting-row"><span><strong>Notifications</strong><small>Show notification alerts in the header</small></span><input id="notificationsToggle" type="checkbox" checked onchange="saveSetting('notifications', this.checked)"></label>
+            <label class="setting-row"><span><strong>Compact mode</strong><small>Reduce spacing across dashboard cards</small></span><input id="compactToggle" type="checkbox" onchange="saveSetting('compact', this.checked)"></label>
+        </div>
+        <button class="primary-btn full-btn" type="button" onclick="closeUtilityModal('settingsModal')">Save & Close</button>
+    </div>
+</div>
 
-            \<input
+<div class="modal-overlay" id="helpModal" hidden>
+    <div class="modal utility-modal">
+        <button class="close-modal" type="button" onclick="closeUtilityModal('helpModal')"><i class="fa-solid fa-xmark"></i></button>
+        <div class="utility-icon"><i class="fa-regular fa-circle-question"></i></div>
+        <h2>Help & Support</h2>
+        <p>Quick help for using the dashboard.</p>
+        <div class="help-list">
+            <div><i class="fa-solid fa-user-graduate"></i><span><strong>Students</strong><small>Add and search student development profiles.</small></span></div>
+            <div><i class="fa-solid fa-chart-line"></i><span><strong>Analytics</strong><small>Use Academics, Activities and Skills to review progress.</small></span></div>
+            <div><i class="fa-solid fa-bell"></i><span><strong>Notifications</strong><small>Open the bell to see attendance and achievement updates.</small></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="signed-out-screen" id="signedOutScreen" hidden>
+    <div class="signed-out-card">
+        <div class="utility-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+        <h2>You are signed out</h2>
+        <p>This dashboard uses frontend session state. Backend authentication can be added separately for secure access.</p>
+        <button class="primary-btn" type="button" onclick="signInAgain()">Return to Dashboard</button>
+    </div>
+</div>
+
+<!-- ================= ADD STUDENT MODAL ================= -->
+
+<div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+        <button class="close-modal" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h2>Add Student</h2>
+
+        <p>Create a new student development profile.</p>
+
+
+        <form id="studentForm" onsubmit="addStudent(event); return false;">
+
+            <label>Student Name</label>
+
+            <input
                 type="text"
                 id="name"
                 placeholder="Enter student name"
                 required
-            \>
+            >
 
 
+            <label>Student ID</label>
 
-            \<label>Student ID\</label>
-
-            \<input
+            <input
                 type="text"
                 id="studentId"
                 placeholder="BM2026001"
                 required
-            \>
+            >
 
 
+            <label>Department</label>
 
-            \<label>Department\</label>
+            <select id="department">
 
-            \<select id="department">
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="IT">IT</option>
+                <option value="EEE">EEE</option>
+                <option value="Mechanical">Mechanical</option>
 
-                \<option value="CSE">CSE\</option>
-                \<option value="ECE">ECE\</option>
-                \<option value="IT">IT\</option>
-                \<option value="EEE">EEE\</option>
-                \<option value="Mechanical">Mechanical\</option>
-
-            \</select>
-
+            </select>
 
 
-            \<label>Attendance %\</label>
+            <label>Attendance %</label>
 
-            \<input
+            <input
                 type="number"
                 id="attendance"
                 min="0"
                 max="100"
                 placeholder="85"
                 required
-            \>
+            >
 
 
-
-            \<button
+            <button
                 class="primary-btn full-btn"
                 type="submit"
-            \>
+            >
                 Add Student
-            \</button>
+            </button>
 
-        \</form>
+        </form>
 
-    \</div>
+    </div>
 
-\</div>
+</div>
 
 
+<script src="script.js"></script>
 
-\<script src="script.js">\</script>
-
-\</body>
-\</html>
+</body>
+</html>
