@@ -1148,11 +1148,66 @@ td {
 
 .modal {
     background: white;
-    width: 420px;
+    width: 550px;
     max-width: 90%;
     padding: 30px;
     border-radius: 16px;
     position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.section-title {
+    margin: 20px 0 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.section-title:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.section-hint {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 0 0 4px;
+}
+
+.row-2,
+.row-3 {
+    display: grid;
+    gap: 12px;
+}
+
+.row-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.row-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: normal;
+}
+
+.checkbox-item input {
+    width: auto;
 }
 
 .modal h2 {
