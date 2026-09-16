@@ -130,9 +130,9 @@
 
             <div class="header-action-wrap profile-wrap">
                 <button class="profile" id="profileButton" type="button" aria-label="Open profile menu" aria-expanded="false">
-                    <div class="avatar">DR</div>
+                    <div class="avatar">SM</div>
                     <div>
-                        <strong>Dr. Rahul</strong>
+                        <strong>Sir/Madam</strong>
                         <small>Faculty</small>
                     </div>
                     <i class="fa-solid fa-chevron-down"></i>
@@ -140,7 +140,7 @@
 
                 <div class="profile-menu" id="profileMenu" hidden>
                     <div class="profile-menu-head">
-                        <div class="avatar large">DR</div>
+                        <div class="avatar large">SM</div>
                         <div>
                             <strong>Dr. Rahul</strong>
                             <small>Faculty • Student Development</small>
@@ -168,7 +168,7 @@
             <div>
                 <span class="welcome-tag">ACADEMIC YEAR 2026–27</span>
 
-                <h2>Good evening, Dr. Rahul 👋</h2>
+                <h2>Good evening, Sir/Madam 👋</h2>
 
                 <p>
                     Here's an overview of your students' holistic development.
@@ -887,30 +887,92 @@
 
 <div class="modal-overlay" id="profileModal" hidden>
     <div class="modal utility-modal">
-        <button class="close-modal" type="button" onclick="closeUtilityModal('profileModal')"><i class="fa-solid fa-xmark"></i></button>
-        <div class="utility-icon"><i class="fa-regular fa-user"></i></div>
+        <button class="close-modal" type="button" onclick="closeUtilityModal('profileModal')">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="utility-icon">
+            <i class="fa-regular fa-user"></i>
+        </div>
+
         <h2>My Profile</h2>
         <p>Your faculty account information.</p>
+
         <div class="profile-detail-grid">
-            <div><small>Name</small><strong>Dr. Rahul</strong></div>
-            <div><small>Role</small><strong>Faculty</strong></div>
-            <div><small>Department</small><strong>Computer Science & Engineering</strong></div>
-            <div><small>Academic Year</small><strong>2026–27</strong></div>
+            <div class="profile-detail-item">
+                <span>Name</span>
+                <strong>Sir/Madam</strong>
+            </div>
+
+            <div class="profile-detail-item">
+                <span>Role</span>
+                <strong>Faculty</strong>
+            </div>
+
+            <div class="profile-detail-item">
+                <span>Department</span>
+                <strong>Computer Science & Engineering</strong>
+            </div>
+
+            <div class="profile-detail-item">
+                <span>Academic Year</span>
+                <strong>2026–27</strong>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="modal-overlay" id="settingsModal" hidden>
     <div class="modal utility-modal">
-        <button class="close-modal" type="button" onclick="closeUtilityModal('settingsModal')"><i class="fa-solid fa-xmark"></i></button>
-        <div class="utility-icon"><i class="fa-solid fa-gear"></i></div>
+        <button class="close-modal" type="button" onclick="closeUtilityModal('settingsModal')">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="utility-icon">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+
         <h2>Settings</h2>
         <p>Customize your BeyondMarks dashboard.</p>
+
         <div class="settings-list">
-            <label class="setting-row"><span><strong>Notifications</strong><small>Show notification alerts in the header</small></span><input id="notificationsToggle" type="checkbox" checked onchange="saveSetting('notifications', this.checked)"></label>
-            <label class="setting-row"><span><strong>Compact mode</strong><small>Reduce spacing across dashboard cards</small></span><input id="compactToggle" type="checkbox" onchange="saveSetting('compact', this.checked)"></label>
+
+            <label class="setting-row">
+                <span class="setting-text">
+                    <strong>Notifications</strong>
+                    <small>Show notification alerts in the header</small>
+                </span>
+
+                <input
+                    id="notificationsToggle"
+                    type="checkbox"
+                    checked
+                    onchange="saveSetting('notifications', this.checked)"
+                >
+            </label>
+
+            <label class="setting-row">
+                <span class="setting-text">
+                    <strong>Compact Mode</strong>
+                    <small>Reduce spacing across dashboard cards</small>
+                </span>
+
+                <input
+                    id="compactToggle"
+                    type="checkbox"
+                    onchange="saveSetting('compact', this.checked)"
+                >
+            </label>
+
         </div>
-        <button class="primary-btn full-btn" type="button" onclick="closeUtilityModal('settingsModal')">Save & Close</button>
+
+        <button
+            class="primary-btn full-btn"
+            type="button"
+            onclick="closeUtilityModal('settingsModal')"
+        >
+            Save & Close
+        </button>
     </div>
 </div>
 
