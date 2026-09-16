@@ -3,7 +3,7 @@ from flask_cors import CORS
 from db import get_db_connection 
  
 app = Flask(__name__) 
-CORS(app) 
+CORS(app, resources={r"/api/*": {"origins": "*"}}, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
  
  
 # HOME 
